@@ -1,0 +1,41 @@
+#N canvas 340 152 581 318 10;
+#X obj 31 68 - 1;
+#X obj 31 156 expr if($f1 > 0 \, 0 \, 1);
+#X obj 31 199 route 0 1;
+#X text 92 199 note on messages come through on 0 \, note off on 1
+;
+#X obj 31 177 pack f f f f;
+#X obj 31 90 pack f f f;
+#X obj 31 112 t list list;
+#X msg 31 134 \$3;
+#X obj 94 134 unpack f f f;
+#X obj 31 28 inlet;
+#X obj 59 48 inlet;
+#X obj 88 68 inlet;
+#X obj 31 242 outlet;
+#X obj 56 221 outlet;
+#X text 75 243 note on;
+#X text 100 221 note off;
+#X text 171 39 takes the output of [poly] and separates midi note off
+(zero-velocity) messages and note on (non-zero velocity) into two streams
+;
+#X text 303 81 output is a list:;
+#X text 303 125 velocity;
+#X text 303 101 voice number \,;
+#X text 303 113 midi note \,;
+#X text 173 21 wrapper for poly;
+#X connect 0 0 5 0;
+#X connect 1 0 4 0;
+#X connect 2 0 12 0;
+#X connect 2 1 13 0;
+#X connect 4 0 2 0;
+#X connect 5 0 6 0;
+#X connect 6 0 7 0;
+#X connect 6 1 8 0;
+#X connect 7 0 1 0;
+#X connect 8 0 4 1;
+#X connect 8 1 4 2;
+#X connect 8 2 4 3;
+#X connect 9 0 0 0;
+#X connect 10 0 5 1;
+#X connect 11 0 5 2;
